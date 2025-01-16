@@ -1,0 +1,31 @@
+{
+    "environment": [
+        {
+            "name": "config",
+            "value": "Debug"
+        }
+    ],
+    "configurations": [
+        {
+            "name": "C/C++ Runner: Debug Session",
+            "type": "cppdbg",
+            "request": "launch",
+            //"args": ["../Code-Analysis/TaticalNuke/Classes/class.nuke"],
+            "args": [],
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "cwd": "/home/fingerlickinggoodness12/Interpreter",
+            // NOTE: For "program": replace the string literal path with the actual executable that you want to debug 
+            "program": "/home/fingerlickinggoodness12/Interpreter/exec_debug_interpreter",
+            "MIMode": "gdb",
+            "miDebuggerPath": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
