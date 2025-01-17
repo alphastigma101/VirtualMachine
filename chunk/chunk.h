@@ -9,6 +9,7 @@ typedef enum {
 namespace Chunk {
     class chunk {
         public:
+            friend class ::Debug::debug;
             explicit chunk() noexcept = default;
             ~chunk() noexcept {
                 code.get_deleter();

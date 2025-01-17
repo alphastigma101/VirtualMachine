@@ -1,16 +1,15 @@
 #include <chunk.h>
-
+// initialize count and capacity for the dynamic array
 void Chunk::chunk::initChunk(Chunk::chunk* chunk) {
     chunk->count = 0;
     chunk->capacity = 0;
-    //chunk->code = NULL;
 }
 
 void Chunk::chunk::freeChunk(Chunk::chunk* chunk) {
-    FREE_ARRAY(uint8_t, &chunk->code, chunk->capacity);
+    FREE_ARRAY(uint8_t, chunk->code.get(), chunk->capacity);
     initChunk(std::move(chunk));
 }
-
+// Write cpu instructions to the chunks of memory that has been created 
 void Chunk::chunk::writeChunk(Chunk::chunk* chunk, uint8_t byte) {
     if (chunk->capacity < chunk->count + 1) {
         int oldCapacity = chunk->capacity;

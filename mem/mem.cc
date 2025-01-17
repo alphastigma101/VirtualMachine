@@ -6,7 +6,8 @@ void *Mem::mem::reallocate(void *pointer, size_t oldSize, size_t newSize) {
         code->get_deleter();
         return nullptr;
     }
-    void* result = realloc(pointer, newSize);
+    auto code = reinterpret_cast<Unique<uint8_t[]>*>(pointer);
+    void* result = realloc(code->get(), newSize);
     if (result == nullptr) exit(1);
     return result;
 }

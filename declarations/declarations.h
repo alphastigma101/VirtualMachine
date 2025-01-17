@@ -15,6 +15,7 @@
  * ---------------------------------------------------------------------------       
 */        
 typedef std::string String;
+typedef double Value;
 // Containers
 using Any = std::any;
 // Pointers
@@ -29,6 +30,12 @@ namespace Chunk {
 };
 namespace Mem {
     class mem;
+};
+namespace Debug {
+    class debug;
+};
+namespace ValueArray {
+    class valueArray;
 };
 
 #endif
