@@ -5,17 +5,24 @@ namespace ValueArray {
     class valueArray {
         public:
             friend class ::Debug::debug;
-            explicit valueArray() noexcept = default;
-            ~valueArray() {
-                values.get_deleter();
+            friend class ::Chunk::chunk;
+            explicit valueArray() noexcept {
+                this->values = nullptr;
+                this->capacity = 0;
+                this->count = 0;
             };
-            static void initValueArray(ValueArray::valueArray* array);
+            ~valueArray() {
+                delete values;
+            };
             static void writeValueArray(ValueArray::valueArray* array, Value value);
             static void freeValueArray(ValueArray::valueArray* array);
+            static void printValue(Value value);
+        protected:
+            static void initValueArray(ValueArray::valueArray* array);
         private:
             int capacity;
             int count;
-            Unique<Value[]> values;
+            Value* values;
     };
 };
 

@@ -7,6 +7,15 @@ namespace Mem {
             explicit mem() noexcept = default;
             ~mem() noexcept = default;
             static void* reallocate(void* pointer, size_t oldSize, size_t newSize);
+        private:
+            template<typename Type, typename... Types>
+            inline static Type& reinterpretation(Type& value, Types... types) {
+                if (((sizeof(value) == sizeof(types)) || ...)) {
+                    return value;
+                }
+                // TODO: Need to test out my runtimerror class and copy it over here after the test cases pass
+                throw;
+            };
     };
 };
 #define GROW_CAPACITY(capacity) \

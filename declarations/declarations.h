@@ -1,7 +1,5 @@
 #ifndef _DECLARATIONS_H_
 #define _DECLARATIONS_H_
-#include <memory>
-#include <iostream>
 #include <atomic>
 #include <mutex>
 #include <thread>
@@ -18,9 +16,6 @@ typedef std::string String;
 typedef double Value;
 // Containers
 using Any = std::any;
-// Pointers
-template<typename T>
-using Unique = std::unique_ptr<T>;
 // Threading/Atomic/Mutex
 template<typename T>
 using Atomic = std::atomic<T>;

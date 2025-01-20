@@ -1,13 +1,19 @@
 #include <mem.h>
-
-void *Mem::mem::reallocate(void *pointer, size_t oldSize, size_t newSize) {
+/** ---------------------------------------------------
+ * @brief ...
+ * @param pointer A raw pointer type void points to a raw pointer unint8[].
+ * @param oldSize The old size of the dynamic allocated array
+ * @param newSize The size to make the array grow to
+ * @return Return the new allocated array
+ * 
+ * ----------------------------------------------------  
+*/
+void* Mem::mem::reallocate(void *pointer, size_t oldSize, size_t newSize) {
     if (newSize == 0) {
-        auto code = reinterpret_cast<Unique<uint8_t[]>*>(pointer);
-        code->get_deleter();
+        free(pointer);
         return nullptr;
     }
-    auto code = reinterpret_cast<Unique<uint8_t[]>*>(pointer);
-    void* result = realloc(code->get(), newSize);
+    void* result = realloc(pointer, newSize); 
     if (result == nullptr) exit(1);
     return result;
 }
