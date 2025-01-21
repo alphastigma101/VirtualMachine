@@ -6,6 +6,11 @@
 // Controls what kind of instruction we’re dealing with—add, subtract, look up variable, etc.
 typedef enum {
     OP_CONSTANT,
+    OP_ADD,
+    OP_SUBTRACT,
+    OP_MULTIPLY,
+    OP_DIVIDE,
+    OP_NEGATE,
     OP_RETURN,
 } OpCode;
 typedef struct {

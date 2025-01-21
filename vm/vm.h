@@ -1,6 +1,7 @@
-#ifndef _VM_H_
-#define _VM_H_
-#include <declarations.h>
+#ifndef cnuke_vm_h
+#define cnuke_vm_h
+#include "chunk.h"
+#define STACK_MAX 256
 typedef enum {
     INTERPRET_OK,
     INTERPRET_COMPILE_ERROR,
@@ -10,10 +11,14 @@ typedef enum {
 typedef struct {
   Chunk* chunk;
   uint8_t* ip;
+  Value stack[STACK_MAX];
+  Value* stackTop;
 } VM;
 
-static void initVM();
-static void freeVM();
-static InterpretResult interpret(Chunk* chunk);
+void initVM();
+void freeVM();
+InterpretResult interpret(Chunk* chunk);
 static InterpretResult run();
+void push(Value value);
+Value pop();
 #endif
