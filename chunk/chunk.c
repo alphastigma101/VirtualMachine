@@ -1,21 +1,21 @@
-#include <chunk.h>
+#include "chunk.h"
 // initialize count and capacity for the dynamic array
-void Chunk::chunk::initChunk(Chunk::chunk* chunk) {
-    chunk->code = nullptr;
-    chunk->lines = nullptr;
+void initChunk(Chunk* chunk) {
+    chunk->code = NULL;
+    chunk->lines = NULL;
     initValueArray(&chunk->constants);
     chunk->count = 0;
     chunk->capacity = 0;
 }
 
-void Chunk::chunk::freeChunk(Chunk::chunk* chunk) {
+void freeChunk(Chunk* chunk) {
     FREE_ARRAY(uint8_t, chunk->code, chunk->capacity);
     FREE_ARRAY(int, chunk->lines, chunk->capacity);
     freeValueArray(&chunk->constants);
-    initChunk(std::move(chunk));
+    initChunk(chunk);
 }
 // Write cpu instructions to the chunks of memory that has been created 
-void Chunk::chunk::writeChunk(Chunk::chunk* chunk, uint8_t byte, int line) {
+void writeChunk(Chunk* chunk, uint8_t byte, int line) {
     if (chunk->capacity < chunk->count + 1) {
         int oldCapacity = chunk->capacity;
         chunk->capacity = GROW_CAPACITY(oldCapacity);
@@ -30,7 +30,7 @@ void Chunk::chunk::writeChunk(Chunk::chunk* chunk, uint8_t byte, int line) {
 }
 // Add constant numeric values in their own pool because 
 // if something is too big, then it needs to be placed somewhere else.
-int Chunk::chunk::addConstant(Chunk::chunk *chunk, Value value) {
+int addConstant(Chunk* chunk, Value value) {
     writeValueArray(&chunk->constants, value);
     return chunk->constants.count - 1;
 }

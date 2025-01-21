@@ -1,13 +1,15 @@
-#include <value.h>
-#include <mem.h>
+#include <stdio.h>
 
-void ValueArray::valueArray::initValueArray(ValueArray::valueArray *array) {
-    array->values = nullptr;
+#include "mem.h"
+#include "value.h"
+
+void initValueArray(ValueArray *array) {
+    array->values = NULL;
     array->capacity = 0;
     array->count = 0;
 }
 
-void ValueArray::valueArray::writeValueArray(ValueArray::valueArray *array, Value value) {
+void writeValueArray(ValueArray *array, Value value) {
     if (array->capacity < array->count + 1) {
         int oldCapacity = array->capacity;
         array->capacity = GROW_CAPACITY(oldCapacity);
@@ -18,11 +20,11 @@ void ValueArray::valueArray::writeValueArray(ValueArray::valueArray *array, Valu
     array->count++;
 }
 
-void ValueArray::valueArray::freeValueArray(ValueArray::valueArray *array) {
+void freeValueArray(ValueArray *array) {
     FREE_ARRAY(Value, array->values, array->capacity);
     initValueArray(array);
 }
 
-void ValueArray::valueArray::printValue(Value value) {
+void printValue(Value value) {
     printf("%g", value);
 }

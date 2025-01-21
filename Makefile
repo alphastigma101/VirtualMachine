@@ -1,16 +1,16 @@
 # Compiler and flags
-CXX := g++
-CXXFLAGS := -g -std=c++23
+CXX := gcc
+CXXFLAGS := -g
 LDFLAGS := -L $(HOME)/VirtualMachine/tests -lgtest -lgtest_main -pthread
 
 # Include directories
-INCLUDES := -I mem/ -I declarations/ -I chunk/ -I debug/ -I value/
+INCLUDES := -I mem/ -I declarations/ -I chunk/ -I debug/ -I value/ -I common/ -I vm/
 
-SRC_MEMORY := mem/mem.cc
-SRC_CHUNK := chunk/chunk.cc
-SRC_DEBUG := debug/debug.cc
-SRC_VALUE := value/value.cc
-SRC_MAIN := mem/mem.cc chunk/chunk.cc debug/debug.cc value/value.cc main.cc
+SRC_MEMORY := mem/mem.c
+SRC_CHUNK := chunk/chunk.c
+SRC_DEBUG := debug/debug.c
+SRC_VALUE := value/value.c
+SRC_MAIN := mem/mem.c chunk/chunk.c debug/debug.c value/value.c main.c
 
 BINARIES := exec_vm
 .PHONY: all clean

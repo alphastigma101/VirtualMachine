@@ -1,4 +1,5 @@
-#include <mem.h>
+#include <stdlib.h>
+#include "mem.h"
 /** ---------------------------------------------------
  * @brief ...
  * @param pointer A raw pointer type void points to a raw pointer unint8[].
@@ -8,12 +9,12 @@
  * 
  * ----------------------------------------------------  
 */
-void* Mem::mem::reallocate(void *pointer, size_t oldSize, size_t newSize) {
+void* reallocate(void *pointer, size_t oldSize, size_t newSize) {
     if (newSize == 0) {
         free(pointer);
-        return nullptr;
+        return NULL;
     }
     void* result = realloc(pointer, newSize); 
-    if (result == nullptr) exit(1);
+    if (result == NULL) exit(1);
     return result;
 }
