@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "vm.h"
 #include "common.h"
+#include "compiler.h"
 #include "debug.h"
 
 VM vm;
@@ -25,11 +26,24 @@ Value pop() {
 }
 // Interprets a targted chunk of bytecode
 // interpreter will use this to know how to set the exit code of the process based on the enums
-InterpretResult interpret(Chunk *chunk) {
-    vm.chunk = chunk;
-    vm.ip = vm.chunk->code;
-    return run();
+InterpretResult interpret(const char* source) {
+   Chunk chunk;
+  initChunk(&chunk);
+
+  if (!compile(source, &chunk)) {
+    freeChunk(&chunk);
+    return INTERPRET_COMPILE_ERROR;
+  }
+
+  vm.chunk = &chunk;
+  vm.ip = vm.chunk->code;
+
+  InterpretResult result = run();
+
+  freeChunk(&chunk);
+  return result;
 }
+
 
 static InterpretResult run() {
     #define READ_BYTE() (*vm.ip++)
