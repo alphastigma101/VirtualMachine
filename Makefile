@@ -5,7 +5,7 @@ LDFLAGS := -L $(HOME)/VirtualMachine/tests -lgtest -lgtest_main -pthread
 
 # Include directories
 INCLUDES := -I mem/ -I declarations/ -I chunk/ -I debug/ -I value/ -I common/ \
-	-I vm/ -I compiler/ -I scanner/ -I object/
+	-I vm/ -I compiler/ -I scanner/ -I object/ -I table/
 
 SRC_MEMORY := mem/mem.c
 SRC_CHUNK := chunk/chunk.c
@@ -15,8 +15,9 @@ SRC_VM := vm/vm.c
 SRC_COMPILER := compiler/compiler.c
 SRC_SCANNER := scanner/scanner.c
 SRC_OBJ := object/object.c
+SRC_TABLE := table/table.c
 SRC_MAIN := mem/mem.c chunk/chunk.c debug/debug.c vm/vm.c value/value.c compiler/compiler.c scanner/scanner.c \
-	object/object.c main.c
+	object/object.c table/table.c main.c
 
 BINARIES := exec_vm
 .PHONY: all clean

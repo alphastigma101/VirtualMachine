@@ -27,9 +27,13 @@ static void runtimeError(const char* format, ...) {
 // Virtual Machine is going to be using a stack instead of AST 
 void initVM() {
     resetStack();
+    vm.objects = NULL;
+    initTable(&vm.strings);
+
 }
 
 void freeVM() {
+    freeTable(&vm.strings);
     freeObjects();
 }
 void push(Value value) {
