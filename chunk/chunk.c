@@ -19,8 +19,7 @@ void writeChunk(Chunk* chunk, uint8_t byte, int line) {
     if (chunk->capacity < chunk->count + 1) {
         int oldCapacity = chunk->capacity;
         chunk->capacity = GROW_CAPACITY(oldCapacity);
-        chunk->code = GROW_ARRAY(uint8_t, chunk->code,
-            oldCapacity, chunk->capacity);
+        chunk->code = GROW_ARRAY(uint8_t, chunk->code, oldCapacity, chunk->capacity);
         chunk->lines = GROW_ARRAY(int, chunk->lines,
         oldCapacity, chunk->capacity);
     }
@@ -28,6 +27,7 @@ void writeChunk(Chunk* chunk, uint8_t byte, int line) {
     chunk->lines[chunk->count] = line;
     chunk->count++;
 }
+
 // Add constant numeric values in their own pool because 
 // if something is too big, then it needs to be placed somewhere else.
 int addConstant(Chunk* chunk, Value value) {

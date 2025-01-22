@@ -23,6 +23,7 @@ static ObjString* allocateString(char* chars, int length, uint32_t hash) {
   tableSet(&vm.strings, string, NIL_VAL);
   return string;
 }
+
 static uint32_t hashString(const char* key, int length) {
   uint32_t hash = 2166136261u;
   for (int i = 0; i < length; i++) {
@@ -31,6 +32,7 @@ static uint32_t hashString(const char* key, int length) {
   }
   return hash;
 }
+
 ObjString* takeString(char* chars, int length) {
   uint32_t hash = hashString(chars, length);
   ObjString* interned = tableFindString(&vm.strings, chars, length, hash);
