@@ -1,0 +1,8 @@
+string a = "outer";
+{
+  string b = "inner";
+  {
+    radiate a;
+    radiate b;
+  }
+}
