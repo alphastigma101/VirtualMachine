@@ -52,12 +52,12 @@ int main(int argc, const char* argv[]) {
     initVM();
     initChunk(&chunk);
     if (argc == 1) {
-        repl();
+      repl();
     } else if (argc == 2) {
-        runFile(argv[1]);
+      runFile(argv[1]);
     } else {
-        fprintf(stderr, "Usage: cNuke [path]\n");
-        exit(64);
+      fprintf(stderr, "Usage: cNuke [path]\n");
+      exit(64);
     }
     freeVM();
     return 0;

@@ -1,0 +1,5 @@
+
+string H = "hello!";
+if (H != "goodbye!") { radiate "goodbye!"; }
+
+if (H == "hello!") { radiate "hello!"; }

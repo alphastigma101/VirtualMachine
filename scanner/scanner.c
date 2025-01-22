@@ -122,17 +122,15 @@ static TokenType identifierType() {
           break;
       case 'i': {
         TokenType res;
-        if (res = checkKeyword(1, 1, "f", TOKEN_IF)) return res;
-        else if (res = checkKeyword(1, 2, "nt", TOKEN_INT)) return res;
+        if ((res = checkKeyword(1, 1, "f", TOKEN_IF)) == TOKEN_IF) return res;
+        else if ((res = checkKeyword(1, 2, "nt", TOKEN_INT)) == TOKEN_INT) return res;
       }
       case 'n': return checkKeyword(1, 2, "il", TOKEN_NIL);
       case 'o': return checkKeyword(1, 1, "r", TOKEN_OR);
       case 'r': {
-          TokenType res; 
-          if (res = checkKeyword(1, 6, "adiate", TOKEN_RADIATE)) {
-            return res;
-          }
-          else if (res = checkKeyword(1, 5, "eturn", TOKEN_RETURN)) {
+          TokenType res;
+          if ((res = res = checkKeyword(1, 6, "adiate", TOKEN_RADIATE)) == TOKEN_RADIATE) return res; 
+          else if ((res = checkKeyword(1, 5, "eturn", TOKEN_RETURN)) == TOKEN_RETURN) {
             return res;
           }
       }
@@ -152,7 +150,7 @@ static TokenType identifierType() {
       case 'w': return checkKeyword(1, 4, "hile", TOKEN_WHILE);
       case 'v': { 
         TokenType res;
-        if (res = checkKeyword(1, 3, "oid", TOKEN_VOID)) return res;
+        if ((res = checkKeyword(1, 3, "oid", TOKEN_VOID)) == TOKEN_VOID) return res;
       }
   }
   return TOKEN_IDENTIFIER;
