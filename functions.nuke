@@ -1,0 +1,6 @@
+
+int foo(a, b, c) {
+    radiate a + b + c;
+}
+
+foo(10, 20, 40);

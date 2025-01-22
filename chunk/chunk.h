@@ -1,6 +1,7 @@
 #ifndef cnuke_chunk_h
 #define cnuke_chunk_h
 #include "mem.h"
+#include "value.h"
 // Controls what kind of instruction we’re dealing with—add, subtract, look up variable, etc.
 typedef enum {
     OP_CONSTANT,
@@ -9,9 +10,11 @@ typedef enum {
     OP_FALSE,
     OP_EQUAL,
     OP_POP,
+    OP_CALL,
     OP_GET_LOCAL,
     OP_SET_LOCAL,
     OP_DEFINE_GLOBAL,
+    OBJ_NATIVE,
     OP_GET_GLOBAL,
     OP_SET_GLOBAL,
     OP_GREATER,

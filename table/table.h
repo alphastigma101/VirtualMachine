@@ -1,6 +1,5 @@
 #ifndef cnuke_table_h
 #define cnuke_table_h
-
 #include "common.h"
 #include "value.h"
 typedef struct {
