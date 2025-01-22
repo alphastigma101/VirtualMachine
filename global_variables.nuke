@@ -1,0 +1,5 @@
+string breakfast = "beignets";
+string beverage = "cafe au lait";
+breakfast = "beignets with " + beverage;
+
+radiate breakfast;

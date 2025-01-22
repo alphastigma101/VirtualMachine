@@ -1,5 +1,5 @@
 # Compiler and flags
-CXX := g++
+CXX := gcc
 CXXFLAGS := -g 
 LDFLAGS := -L $(HOME)/VirtualMachine/tests -lgtest -lgtest_main -pthread
 

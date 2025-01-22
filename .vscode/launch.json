@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/exec_vm",
-            "args": [],
+            "args": ["global_variables.nuke"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

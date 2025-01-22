@@ -87,8 +87,7 @@ static void skipWhitespace() {
         }
     }
 }
-static TokenType checkKeyword(int start, int length,
-    const char* rest, TokenType type) {
+static TokenType checkKeyword(int start, int length, const char* rest, TokenType type) {
   if (scanner.current - scanner.start == start + length &&
       memcmp(scanner.start + start, rest, length) == 0) {
     return type;
@@ -99,29 +98,41 @@ static TokenType checkKeyword(int start, int length,
 static TokenType identifierType() {
     switch (scanner.start[0]) {
         case 'a': return checkKeyword(1, 2, "nd", TOKEN_AND);
-        case 'c': return checkKeyword(1, 4, "ontainment", TOKEN_CONTAINMENT);
+        case 'b': {
+          TokenType res;
+          if ((res = checkKeyword(1, 3, "ool", TOKEN_BOOL)) == TOKEN_BOOL) return res;
+        }
+        case 'c': return checkKeyword(1, 10, "ontainment", TOKEN_CONTAINMENT);
         case 'e': return checkKeyword(1, 3, "lse", TOKEN_ELSE);
         case 'f':
             if (scanner.current - scanner.start > 1) {
                 switch (scanner.start[1]) {
-                    case 'a': return checkKeyword(2, 3, "lse", TOKEN_FALSE);
-                    case 'o': return checkKeyword(2, 1, "r", TOKEN_FOR);
-                    case 'u': return checkKeyword(2, 1, "n", TOKEN_FUN);
+                  case 'a': return checkKeyword(2, 3, "lse", TOKEN_FALSE);
+                  case 'o': return checkKeyword(2, 1, "r", TOKEN_FOR);
                 }
             }
             break;
-        case 'i': return checkKeyword(1, 1, "f", TOKEN_IF);
+        case 'i': {
+          TokenType res;
+          if (res = checkKeyword(1, 1, "f", TOKEN_IF)) return res;
+          else if (res = checkKeyword(1, 2, "nt", TOKEN_INT)) return res;
+        }
         case 'n': return checkKeyword(1, 2, "il", TOKEN_NIL);
         case 'o': return checkKeyword(1, 1, "r", TOKEN_OR);
-        case 'r':
+        case 'r': {
             TokenType res; 
-            if (res = checkKeyword(1, 4, "adiate", TOKEN_RADIATE)) {
-                return res;
+            if (res = checkKeyword(1, 6, "adiate", TOKEN_RADIATE)) {
+              return res;
             }
             else if (res = checkKeyword(1, 5, "eturn", TOKEN_RETURN)) {
-                return res;
+              return res;
             }
-        case 's': return checkKeyword(1, 4, "uper", TOKEN_SUPER);
+        }
+        case 's': {
+          TokenType res;
+          if ((res = checkKeyword(1, 4, "uper", TOKEN_SUPER)) == TOKEN_SUPER) return res;
+          else if ((res = checkKeyword(1, 5, "tring", TOKEN_STR)) == TOKEN_STR) return res;
+        }
         case 't':
             if (scanner.current - scanner.start > 1) {
                 switch (scanner.start[1]) {
@@ -130,8 +141,11 @@ static TokenType identifierType() {
                 }
             }
             break;
-        case 'v': return checkKeyword(1, 2, "ar", TOKEN_VAR);
         case 'w': return checkKeyword(1, 4, "hile", TOKEN_WHILE);
+        case 'v': { 
+          TokenType res;
+          if (res = checkKeyword(1, 3, "oid", TOKEN_VOID)) return res;
+        }
     }
     return TOKEN_IDENTIFIER;
 } 
